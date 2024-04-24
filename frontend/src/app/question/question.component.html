@@ -1,0 +1,25 @@
+<mat-card class="main-card" [ngStyle]="{'border-color': questionColor}">
+    <mat-card-title [ngStyle]="{'color': questionColor}">{{questionTitle}}</mat-card-title>
+    <mat-card-subtitle [ngStyle]="{'color': questionColor}">{{questionType}}</mat-card-subtitle>
+    <form [formGroup]="mainForm">
+        <mat-form-field appearance="fill" *ngIf="showInput">
+            <mat-label>Réponse</mat-label>
+            <input type="text" matInput [formControl]="inputCtrl">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+        <div *ngIf="!showInput">
+            <mat-radio-group [formControl]="choiceCtrl">
+                <mat-radio-button *ngFor="let choice of choices" [value]="choice">{{choice}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </form>
+    <mat-card-actions style="width: 100%;display: inline-block;">
+        <button  mat-button color="primary" (click)="onFormSubmit()" [disabled]="loading || showSuccess || showError">ENVOYER</button>
+        <button  mat-button color="primary" (click)="close(false)" [disabled]="loading || showSuccess || showError">RETOUR</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    </mat-card-footer>
+    <h1 *ngIf="showSuccess"  style="color:darkgreen"> Bien joué !</h1>
+    <h1 *ngIf="showError" style="color:orangered"> Nope ... </h1>
+    </mat-card>

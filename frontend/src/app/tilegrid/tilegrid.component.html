@@ -1,0 +1,9 @@
+<div class="wrapper">
+    <img src="../assets/images/photo.jpg" *ngIf="showImage">
+    <div class="overlay">
+    <mat-grid-list cols="2" rowHeight="fit">
+        <mat-grid-tile  *ngFor="let question of questionsMap | keyvalue;" [id]="'tile-'+question.key" [ngStyle]="{'background-color': tilesParam[question.key].background,  'z-index': tilesParam[question.key].zindex}" [@grid-tile]="{value:tilesParam[question.key].state, params: {translateValue: tilesParam[question.key].translateValue}}" (click)="onTileClick(question.key)" (mouseover)="onTileHover(question.key)"  (mouseleave)="onTileLeave(question.key)"></mat-grid-tile>
+    </mat-grid-list>
+    <app-question [question]="selectedQuestion" *ngIf="showQuestion" (hideQuestion)="onHideQuestion($event)"></app-question>
+    </div>
+</div>
