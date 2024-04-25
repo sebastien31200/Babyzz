@@ -1,6 +1,7 @@
-# code-with-quarkus
+# Babyzz - Backend
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Before running back-end, make sure to run Mongo DB container: docker-compose up
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 

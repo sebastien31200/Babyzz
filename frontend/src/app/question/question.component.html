@@ -1,4 +1,4 @@
-<mat-card class="main-card" [ngStyle]="{'border-color': questionColor}">
+<mat-card class="main-card" [ngStyle]="{'border-color': questionColor}" [ngClass]="{'main-card-phone':isPhonePortrait}">
     <mat-card-title [ngStyle]="{'color': questionColor}">{{questionTitle}}</mat-card-title>
     <mat-card-subtitle [ngStyle]="{'color': questionColor}">{{questionType}}</mat-card-subtitle>
     <form [formGroup]="mainForm">
@@ -13,8 +13,8 @@
             </mat-radio-group>
         </div>
     </form>
-    <mat-card-actions style="width: 100%;display: inline-block;">
-        <button  mat-button color="primary" (click)="onFormSubmit()" [disabled]="loading || showSuccess || showError">ENVOYER</button>
+    <mat-card-actions *ngIf="!showSuccess && !showError" style="width: 100%;display: inline-block;">
+        <button  mat-button color="primary" (click)="onFormSubmit()" [disabled]="loading || showSuccess || showError || !mainForm.valid">VALIDER</button>
         <button  mat-button color="primary" (click)="close(false)" [disabled]="loading || showSuccess || showError">RETOUR</button>
     </mat-card-actions>
     <mat-card-footer>

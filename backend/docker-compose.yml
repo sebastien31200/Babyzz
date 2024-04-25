@@ -3,6 +3,7 @@ services:
   mongo:
     image: mongo:4.4
     container_name: mongo-db
+    restart: always
     ports:
       - "27017:27017"
     volumes:
@@ -11,6 +12,7 @@ services:
   mongo-express:
     image: mongo-express
     container_name: mongo-express
+    restart: on-failure
     ports: 
       - "8081:8081"
     environment:
@@ -18,7 +20,6 @@ services:
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
     depends_on:
       - mongo
-    restart: on-failure
 
 volumes:
     mongodbdata:

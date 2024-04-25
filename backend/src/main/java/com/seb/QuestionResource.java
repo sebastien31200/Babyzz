@@ -1,6 +1,9 @@
 package com.seb;
 
 import java.util.List;
+
+import org.jboss.logging.Logger;
+
 import com.seb.model.Question;
 import com.seb.model.QuestionUserAnswer;
 import com.seb.services.QuestionService;
@@ -15,11 +18,25 @@ public class QuestionResource {
 
     @Inject QuestionService questionService;
 
+    private static final Logger log = Logger.getLogger(QuestionResource.class); 
+
+    public QuestionResource(){
+        log.info("Hello");
+        System.out.println("Hello QuestionResources instance");
+    }
+
     @GET
     public List<Question> questions() {
-        System.out.println("Hello questions");
+        System.out.println("GET questions");
         List<Question> questions = questionService.getQuestionsWithoutAnswer();
         return questions;
+    }
+
+    @GET
+    @Path("/hello")
+    public String hello() {
+        System.out.println("GET hello");
+        return "<h1>hello</h1>";
     }
 
     @POST

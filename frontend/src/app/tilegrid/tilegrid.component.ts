@@ -9,6 +9,7 @@ import { QuestionService } from '../services/questions.service';
 import { Question } from '../models/question.model';
 import { HttpClientModule } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-tilegrid',
@@ -46,8 +47,9 @@ export class TilegridComponent implements OnInit {
   showImage !: boolean;
   showQuestion !: boolean;
   selectedQuestion !: Question;
+  isPhonePortrait!: boolean;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private responsive: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.showImage = false;
@@ -60,6 +62,14 @@ export class TilegridComponent implements OnInit {
       })
       this.showImage = true;
     })).subscribe();
+
+    this.responsive.observe(Breakpoints.HandsetPortrait)
+    .subscribe(result => {
+      this.isPhonePortrait = false;
+      if (result.matches) {
+        this.isPhonePortrait = true;
+      }
+    });
 
   }
 

@@ -13,11 +13,7 @@ public class QuestionService {
     }
 
     public List<Question> getQuestionsWithoutAnswer(){
-        System.out.println("In all questions");
         List<Question> allQuestions = Question.listAll();
-        System.out.println("after listAll");
-        System.out.println(allQuestions.size());
-
         allQuestions.forEach(question -> {if(question.choices != null){
             question.choices.forEach(choice -> choice.isAnswser=false);
         }});

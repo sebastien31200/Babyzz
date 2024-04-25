@@ -1,0 +1,25 @@
+<div class="main">
+<mat-card class="main-card">
+    <mat-card-title>Bienvenue</mat-card-title>
+    <mat-card-subtitle >Nana et Seb te proposent un petit jeu</mat-card-subtitle>
+    <mat-card-subtitle >Donne nous quelques informations pour commencer</mat-card-subtitle>
+    <form [formGroup]="mainForm" class="form">
+        <mat-form-field>
+            <mat-label>Ton adresse mail</mat-label>
+            <input type="text" matInput [formControl]="inputEmailCtrl">
+            <mat-error>Il faut entrer une adresse valide</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ton nom</mat-label>
+            <input type="text" matInput [formControl]="inputNameCtrl">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+    </form>
+    <mat-card-actions style="width: 100%;display: inline-block;">
+        <button  mat-button color="primary" (click)="onFormSubmit()" [disabled]="!mainForm.valid">VALIDER</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    </mat-card-footer>
+    </mat-card>
+</div>
