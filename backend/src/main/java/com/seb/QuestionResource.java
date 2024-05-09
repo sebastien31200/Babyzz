@@ -20,11 +20,6 @@ public class QuestionResource {
 
     private static final Logger log = Logger.getLogger(QuestionResource.class); 
 
-    public QuestionResource(){
-        log.info("Hello");
-        System.out.println("Hello QuestionResources instance");
-    }
-
     @GET
     public List<Question> questions() {
         System.out.println("GET questions");
